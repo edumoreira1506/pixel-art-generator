@@ -1,9 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
+import { APP_TITLE } from './config/constants';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Pixel Art Generator - App', () => {
+  const renderApp = () => {
+    const { getByText } = render(<App />);
+
+    return { getByText };
+  };
+
+  it('renders the site title', () => {
+    const { getByText } = renderApp();
+
+    expect(getByText(APP_TITLE)).toBeVisible();
+  });
 });
