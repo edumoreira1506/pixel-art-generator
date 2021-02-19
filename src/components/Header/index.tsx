@@ -1,7 +1,9 @@
 import React, { ReactElement } from 'react';
 
+import { StyledHeader } from './styles';
+
 const Header = (): ReactElement => (
-  <p>Pixel Art Generator</p>
+  <StyledHeader>Pixel Art Generator</StyledHeader>
 );
 
 export default Header;
