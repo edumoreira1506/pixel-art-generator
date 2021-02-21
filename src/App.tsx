@@ -6,12 +6,15 @@ import BoardContainer from './containers/Board';
 import SliderContainer from './containers/Slider';
 
 import Header from './components/Header';
+import Box from './components/Box';
 
 const App = (): ReactElement => (
   <ConfigProvider>
-    <Header />
-    <SliderContainer />
-    <BoardContainer />
+    <Box>
+      <Header />
+      <SliderContainer />
+      <BoardContainer />
+    </Box>
   </ConfigProvider>
 );
 
