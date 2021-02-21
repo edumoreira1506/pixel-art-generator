@@ -14,6 +14,7 @@ const Board = ({ items }: BoardPropsType): ReactElement => (
       <StyledBoardItem
         color={item.color}
         key={`board-item-${itemIndex}-${item.color}`}
+        size={item.size}
       />
     ))}
   </StyledBoard>

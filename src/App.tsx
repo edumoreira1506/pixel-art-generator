@@ -5,13 +5,15 @@ import Board from './components/Board';
 import Slider from './components/Slider';
 
 const App = (): ReactElement => {
-  const [itemWidth, setItemWidth] = useState<number>(30);
+  const [itemWidth, setItemWidth] = useState<number>(50);
+  const [amountOfItems, setAmountOfItems] = useState<number>(1000);
 
   return (
     <>
       <Header />
       <Slider label="Largura do 'pixel'" value={itemWidth} onChange={setItemWidth} />
-      <Board items={Array(100).fill({ color: 'red' })} />
+      <Slider label="Quantidade de pixels" value={amountOfItems / 10} onChange={(newAmount: number) => setAmountOfItems(newAmount * 10)} />
+      <Board items={Array(amountOfItems).fill({ color: 'red', size: itemWidth })} />
     </>
   );
 };
