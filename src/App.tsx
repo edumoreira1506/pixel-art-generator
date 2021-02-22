@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactElement } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { ConfigProvider } from './contexts/config';
+
+import BoardContainer from './containers/Board';
+import SliderContainer from './containers/Slider';
+
+import Header from './components/Header';
+import Box from './components/Box';
+
+const App = (): ReactElement => (
+  <ConfigProvider>
+    <Box>
+      <Header />
+      <SliderContainer />
+      <BoardContainer />
+    </Box>
+  </ConfigProvider>
+);
 
 export default App;
