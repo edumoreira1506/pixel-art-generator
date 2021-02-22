@@ -7,11 +7,12 @@ const BoardContainer = (): ReactElement => {
   const [columns] = useConfig(configKeys.COLUMNS);
   const [itemWidth] = useConfig(configKeys.ITEM_WIDTH);
   const [marginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
+  const [rows] = useConfig(configKeys.ROWS);
 
   return (
     <Board
       items={
-        Array(columns).fill(Array(columns).fill({
+        Array(rows).fill(Array(columns).fill({
           color: 'red',
           size: itemWidth
         }))

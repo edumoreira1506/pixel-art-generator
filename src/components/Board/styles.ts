@@ -9,6 +9,7 @@ export const StyledBoard = styled.ul`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 type StyledBoardItemType = {

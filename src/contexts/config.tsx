@@ -6,6 +6,7 @@ const INITIAL_CONFIGS = {
   [configKeys.ITEM_WIDTH]: 50,
   [configKeys.COLUMNS]: 10,
   [configKeys.MARGIN_BETWEEN]: 2,
+  [configKeys.ROWS]: 10,
 };
 
 export const ConfigContext = createContext({

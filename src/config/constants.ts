@@ -4,4 +4,5 @@ export const configKeys = {
   ITEM_WIDTH: 'itemWidth',
   COLUMNS: 'columns',
   MARGIN_BETWEEN: 'marginBetween',
+  ROWS: 'rows',
 };

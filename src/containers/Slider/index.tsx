@@ -10,12 +10,14 @@ const SliderContainer = (): ReactElement => {
   const [columns, setColumns] = useConfig(configKeys.COLUMNS);
   const [itemWidth, setItemWidth] = useConfig(configKeys.ITEM_WIDTH);
   const [marginBetween, setMarginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
+  const [rows, setRows] = useConfig(configKeys.ROWS);
 
   return (
     <StyledSlider>
       <Slider label="Largura do 'pixel'" value={Number(itemWidth)} onChange={setItemWidth} />
       <Slider label="Espaço entre os pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
       <Slider label="Colunas" value={Number(columns)} onChange={setColumns} />
+      <Slider label="Linhas" value={Number(rows)} onChange={setRows} />
     </StyledSlider>
   );
 };
