@@ -1,4 +1,4 @@
 export type BoardItemType = {
-  color?: string;
+  color: string;
   size: number;
 }

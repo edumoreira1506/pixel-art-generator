@@ -6,9 +6,13 @@ import useConfig from '../../hooks/useConfig';
 const BoardContainer = (): ReactElement => {
   const [amountOfItems] = useConfig(configKeys.AMOUNT_OF_ITEMS);
   const [itemWidth] = useConfig(configKeys.ITEM_WIDTH);
+  const [marginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
 
   return (
-    <Board items={Array(amountOfItems).fill({ color: 'red', size: itemWidth })} />
+    <Board
+      items={Array(amountOfItems).fill({ color: 'red', size: itemWidth })}
+      margin={marginBetween}
+    />
   );
 };
 

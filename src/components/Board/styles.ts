@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { BoardItemType } from './types';
-
 export const StyledBoard = styled.ul`
   display: flex;
   pdding: 0;
@@ -12,14 +10,20 @@ export const StyledBoard = styled.ul`
   justify-content: space-between;
 `;
 
+type StyledBoardItemType = {
+  color: string;
+  size: number;
+  margin: number;
+}
+
 export const StyledBoardItem = styled.li`
   display: flex;
-  margin: 0 4px 4px 0;
   list-style: none;
   padding: 0;
 
-  ${({ color, size }: BoardItemType) => `
+  ${({ color, size, margin }: StyledBoardItemType) => `
     background-color: ${color};
+    margin: 0 ${margin}px ${margin}px 0;
     width: ${size}px;
     height: ${size}px;
   `}
