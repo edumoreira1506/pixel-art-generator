@@ -4,7 +4,7 @@ import { configKeys } from '../config/constants';
 
 const INITIAL_CONFIGS = {
   [configKeys.ITEM_WIDTH]: 50,
-  [configKeys.AMOUNT_OF_ITEMS]: 1000,
+  [configKeys.COLUMNS]: 10,
   [configKeys.MARGIN_BETWEEN]: 2,
 };
 

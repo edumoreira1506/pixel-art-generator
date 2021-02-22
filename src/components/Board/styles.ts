@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const StyledBoard = styled.ul`
   display: flex;
-  pdding: 0;
+  padding: 0;
   list-style: none;
   max-width: 95%;
   margin: 0 auto;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 `;
 
 type StyledBoardItemType = {
@@ -27,4 +28,9 @@ export const StyledBoardItem = styled.li`
     width: ${size}px;
     height: ${size}px;
   `}
+`;
+
+export const StyledBoardRow = styled.div`
+  width: auto;
+  display: flex;
 `;
