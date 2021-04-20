@@ -5,4 +5,5 @@ export const configKeys = {
   COLUMNS: 'columns',
   MARGIN_BETWEEN: 'marginBetween',
   ROWS: 'rows',
+  COLOR: 'color'
 };

@@ -7,14 +7,21 @@ type BoardPropsType = {
   margin: number;
   onChange: Dispatch<SetStateAction<any[]>>;
   width: number;
+  color: string;
 };
 
-export default function Board({ items, margin, onChange, width }: BoardPropsType): ReactElement {
+export default function Board({ items, margin, onChange, width, color }: BoardPropsType): ReactElement {
   const [isDrawing, setIsDrawing] = useState(false);
   const boardRef = useRef<any>();
 
   const setUserIsDrawing = () => setIsDrawing(true);
   const setUserIsNotDrawing = () => setIsDrawing(false);
+
+  const handleChangeItemColor = (row: number, column: number) => {
+    onChange(prevItems => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
+      rowItem.map((columnItem: string, columnIndex: number) => columnIndex === column ? color: columnItem)
+    ) : ([ ...rowItem ])));
+  };
 
   const handleDraw = (e: any) => {
     if (!isDrawing || !boardRef || !boardRef.current) return;
@@ -32,9 +39,7 @@ export default function Board({ items, margin, onChange, width }: BoardPropsType
     const row = Math.round(Number(clientY - top + marginSize) / width) - 1;
     const column = Math.round(Number(clientX - left + marginSize) / width) - 1;
 
-    onChange(prevItems => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
-      rowItem.map((columnItem: string, columnIndex: number) => columnIndex === column ? '#ffffff': columnItem)
-    ) : ([ ...rowItem ])));
+    handleChangeItemColor(row, column);
   };
 
   useEffect(() => {
@@ -49,6 +54,7 @@ export default function Board({ items, margin, onChange, width }: BoardPropsType
         <StyledBoardRow key={columnIndex}>
           {columnItems.map((item, itemIndex) => (
             <StyledBoardItem
+              onClick={() => handleChangeItemColor(columnIndex, itemIndex)}
               margin={margin}
               color={item}
               key={`board-item-${itemIndex}-${item}`}

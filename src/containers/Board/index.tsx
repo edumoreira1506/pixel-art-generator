@@ -9,11 +9,12 @@ const BoardContainer = (): ReactElement => {
   const [columns] = useConfig(configKeys.COLUMNS);
   const [itemWidth] = useConfig(configKeys.ITEM_WIDTH);
   const [marginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
+  const [color] = useConfig(configKeys.COLOR);
   const [rows] = useConfig(configKeys.ROWS);
-  const [items, setItems] = useState(setupColors(rows, columns, 'red'));
+  const [items, setItems] = useState(setupColors(rows, columns, color));
 
   useEffect(() => {
-    setItems(setupColors(rows, columns, 'red'));
+    setItems(setupColors(rows, columns, color));
   }, [rows, columns]);
 
   return (
@@ -22,6 +23,7 @@ const BoardContainer = (): ReactElement => {
       onChange={setItems}
       margin={marginBetween}
       width={itemWidth}
+      color={color}
     />
   );
 };
