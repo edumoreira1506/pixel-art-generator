@@ -6,11 +6,11 @@ type BoardPropsType = {
   items: Array<Array<string>>;
   margin: number;
   onChange: Dispatch<SetStateAction<any[]>>;
-  width: number;
+  size: number;
   color: string;
 };
 
-export default function Board({ items, margin, onChange, width, color }: BoardPropsType): ReactElement {
+export default function Board({ items, margin, onChange, size, color }: BoardPropsType): ReactElement {
   const [isDrawing, setIsDrawing] = useState(false);
   const boardRef = useRef<any>();
 
@@ -36,8 +36,8 @@ export default function Board({ items, margin, onChange, width, color }: BoardPr
     if (isOutOfBoard) return;
 
     const marginSize = items.length * margin;
-    const row = Math.round(Number(clientY - top + marginSize) / width) - 1;
-    const column = Math.round(Number(clientX - left + marginSize) / width) - 1;
+    const row = Math.round(Number(clientY - top + marginSize) / size) - 1;
+    const column = Math.round(Number(clientX - left + marginSize) / size) - 1;
 
     handleChangeItemColor(row, column);
   };
@@ -58,7 +58,7 @@ export default function Board({ items, margin, onChange, width, color }: BoardPr
               margin={margin}
               color={item}
               key={`board-item-${itemIndex}-${item}`}
-              size={width}
+              size={size}
             />
           ))}
         </StyledBoardRow>

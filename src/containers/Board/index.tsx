@@ -22,7 +22,7 @@ const BoardContainer = (): ReactElement => {
       items={items}
       onChange={setItems}
       margin={marginBetween}
-      width={itemWidth}
+      size={itemWidth}
       color={color}
     />
   );
