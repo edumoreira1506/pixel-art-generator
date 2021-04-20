@@ -22,7 +22,7 @@ describe('Pixel Art Generator - App', () => {
     expect(getByText(APP_TITLE)).toBeVisible();
   });
 
-  const sliders = ['Largura do \'pixel\'', 'Quantidade de pixels'];
+  const sliders = ['Largura do \'pixel\'', 'Espaço entre os pixels', 'Colunas', 'Linhas'];
 
   sliders.forEach((slider) => {
     it(`renders "${slider} slider"`, () => {

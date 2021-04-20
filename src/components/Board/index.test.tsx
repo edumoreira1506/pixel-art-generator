@@ -7,6 +7,10 @@ describe('<Board />', () => {
   const renderBoard = (overrideProps = {}) => {
     const defaultProps = {
       items: [],
+      margin: 10,
+      onChange: jest.fn(),
+      size: 15,
+      color: 'red'
     };
     const { getByText, container } = render(<Board {...defaultProps} {...overrideProps} />);
 
@@ -21,8 +25,7 @@ describe('<Board />', () => {
 
   it('renders the right color of board item', () => {
     const color = '#000000';
-    const boardItem = { color, size: 30 };
-    const boardItems = Array(1).fill(boardItem);
+    const boardItems = Array(1).fill([color]);
     const props = { items: boardItems };
 
     const { container } = renderBoard(props);
@@ -32,9 +35,8 @@ describe('<Board />', () => {
 
   it('renders the right size of board item', () => {
     const size = 30;
-    const boardItem = { color: '#000000', size };
-    const boardItems = Array(1).fill(boardItem);
-    const props = { items: boardItems };
+    const boardItems = Array(1).fill(['#000000']);
+    const props = { items: boardItems, size };
 
     const { container } = renderBoard(props);
 
@@ -43,9 +45,8 @@ describe('<Board />', () => {
   });
 
   it('renders all board items', () => {
-    const boardItem = { color: '#000000', size: 30 };
     const amountOfItems = 50;
-    const boardItems = Array(amountOfItems).fill(boardItem);
+    const boardItems = Array(amountOfItems).fill(['#000000']);
     const props = { items: boardItems };
 
     const { container } = renderBoard(props);
