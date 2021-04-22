@@ -7,3 +7,7 @@ export const configKeys = {
   ROWS: 'rows',
   COLOR: 'color'
 };
+
+export const routes = {
+  HOME: '/'
+};
