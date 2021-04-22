@@ -9,5 +9,6 @@ export const configKeys = {
 };
 
 export const routes = {
-  HOME: '/'
+  HOME: '/',
+  LOGIN: '/login'
 };
