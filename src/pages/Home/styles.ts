@@ -21,6 +21,14 @@ export const StyledFolders = styled.ul`
 export const StyledFolder = styled.li`
   width: 100%;
   margin-bottom: 15px;
+  position: relative;
+
+  .lds-roller {
+    transform: scale(0.2);
+    right: 0;
+    top: 0;
+    position: absolute;
+  }
 `;
 
 export const StyledArt = styled.div`

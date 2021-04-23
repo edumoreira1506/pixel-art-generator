@@ -12,7 +12,7 @@ import { StyledArt, StyledContainer, StyledFolder, StyledFolders } from './style
 export default function HomePage(): ReactElement {
   const [folders, setFolders] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [arts, setArts] = useState<any>({ cache: {}, current: null });
+  const [arts, setArts] = useState<any>({ cache: {}, current: null, isLoading: null });
   const { token } = useAuth();
 
   useEffect(() => {
@@ -44,6 +44,11 @@ export default function HomePage(): ReactElement {
         }
       }));
     } else {
+      setArts((prevArts: any) => ({
+        ...prevArts,
+        isLoading: folderId
+      }));
+      
       FolderService.getFolderArts(String(token), folderId, {
         onError: window.alert,
         onSuccess: (data) => setArts((prevArts: any) => ({
@@ -54,7 +59,8 @@ export default function HomePage(): ReactElement {
           cache: {
             ...prevArts.cache,
             [folderId]: data.arts
-          }
+          },
+          isLoading: null
         }))
       });
     }
@@ -69,6 +75,7 @@ export default function HomePage(): ReactElement {
           {folders.map((folder: any, index: number) => (
             <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
               <Folder name={folder.name}>
+                {arts?.isLoading === folder.id && <Loading />}
                 {folder.id === arts?.current?.folderId && (
                   <>
                     {arts?.current?.arts.map((art: any) => (
