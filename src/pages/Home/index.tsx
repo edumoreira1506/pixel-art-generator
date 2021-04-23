@@ -1,10 +1,13 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
 import FolderService from '../../services/FolderService';
-import { StyledContainer, StyledFolder, StyledFolders } from './styles';
 import Loading from '../../components/Loading';
 import Folder from '../../components/Folder';
+import { routes } from '../../config/constants';
+
+import { StyledArt, StyledContainer, StyledFolder, StyledFolders } from './styles';
 
 export default function HomePage(): ReactElement {
   const [folders, setFolders] = useState<any>([]);
@@ -35,13 +38,19 @@ export default function HomePage(): ReactElement {
     if (cachedArts) {
       setArts((prevArts: any) => ({
         ...prevArts,
-        current: cachedArts
+        current: {
+          folderId,
+          arts: cachedArts
+        }
       }));
     } else {
       FolderService.getFolderArts(String(token), folderId, {
         onError: window.alert,
         onSuccess: (data) => setArts((prevArts: any) => ({
-          ...prevArts,
+          current: {
+            folderId,
+            arts: data.arts
+          },
           cache: {
             ...prevArts.cache,
             [folderId]: data.arts
@@ -59,7 +68,19 @@ export default function HomePage(): ReactElement {
         <StyledFolders>
           {folders.map((folder: any, index: number) => (
             <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
-              <Folder name={folder.name} />
+              <Folder name={folder.name}>
+                {folder.id === arts?.current?.folderId && (
+                  <>
+                    {arts?.current?.arts.map((art: any) => (
+                      <StyledArt key={art.id}>
+                        <Link to={routes.ART(art.id)}>
+                          {art.name}
+                        </Link>
+                      </StyledArt>
+                    ))}
+                  </>
+                )}
+              </Folder>
             </StyledFolder>
           ))}
         </StyledFolders>

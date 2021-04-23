@@ -1,16 +1,18 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 import { StyledFolder, StyledName } from './styles';
 
 type FolderPropsType = {
   name: string;
+  children: ReactNode;
 }
 
-const Folder = ({ name }: FolderPropsType): ReactElement => (
+const Folder = ({ name, children }: FolderPropsType): ReactElement => (
   <StyledFolder>
     <StyledName>
       {name}
     </StyledName>
+    {children}
   </StyledFolder>
 );
 

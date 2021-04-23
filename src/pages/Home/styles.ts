@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../config/constants';
 
 export const StyledContainer = styled.section`
   width: 100vw;
@@ -20,4 +21,20 @@ export const StyledFolders = styled.ul`
 export const StyledFolder = styled.li`
   width: 100%;
   margin-bottom: 15px;
+`;
+
+export const StyledArt = styled.div`
+  margin-left: 30px;
+  border-left: solid 10px ${colors.BLACK};
+  padding-left: 10px;
+  transition: border-left 0.5s ease;
+
+  &:hover {
+    border-left: solid 20px ${colors.BLACK};
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
 `;
