@@ -1,4 +1,5 @@
-import React, { useState, createContext, ReactElement, ReactNode } from 'react';
+import React, { useState, createContext, ReactElement } from 'react';
+import { ProviderProps } from '../@types/provider';
 
 import { configKeys } from '../config/constants';
 
@@ -16,11 +17,7 @@ export const ConfigContext = createContext({
   setConfigs: (_object: any): any => null,
 });
 
-type ConfigProviderProps = {
-  children: ReactNode;
-}
-
-export const ConfigProvider = ({ children }: ConfigProviderProps): ReactElement => {
+export const ConfigProvider = ({ children }: ProviderProps): ReactElement => {
   const [configs, setConfigs] = useState(INITIAL_CONFIGS);
 
   const contextProviderValue = { configs, setConfigs };
