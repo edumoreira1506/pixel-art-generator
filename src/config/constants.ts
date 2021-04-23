@@ -12,3 +12,11 @@ export const routes = {
   HOME: '/',
   LOGIN: '/login'
 };
+
+export const colors = {
+  BLACK: '#000000',
+  WHITE: '#FFFFFF',
+  GREY: '#CCCCCC'
+};
+
+export const DEFAULT_RADIUS = 5;
