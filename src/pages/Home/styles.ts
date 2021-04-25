@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../config/constants';
 
 export const StyledContainer = styled.section`
   width: 100vw;
@@ -21,28 +20,28 @@ export const StyledFolders = styled.ul`
 export const StyledFolder = styled.li`
   width: 100%;
   margin-bottom: 15px;
-  position: relative;
 
   .lds-roller {
     transform: scale(0.2);
-    right: 0;
+    right: 10px;
     top: 0;
     position: absolute;
   }
 `;
 
 export const StyledArt = styled.div`
-  margin-left: 30px;
-  border-left: solid 10px ${colors.BLACK};
-  padding-left: 10px;
-  transition: border-left 0.5s ease;
-
-  &:hover {
-    border-left: solid 20px ${colors.BLACK};
-  }
+  width: 95%;
+  margin-bottom: 10px;
 
   a {
     color: black;
     text-decoration: none;
   }
+`;
+
+export const StyledArts = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `;

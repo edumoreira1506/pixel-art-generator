@@ -11,6 +11,14 @@ export const StyledFolder = styled.div`
 `;
 
 export const StyledName = styled.p`
-  margin: 0;
-  padding-left: 15px;
+  margin: 0 auto;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+
+  svg {
+    margin-right: 8px;
+  }
 `;

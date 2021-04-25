@@ -6,8 +6,9 @@ import FolderService from '../../services/FolderService';
 import Loading from '../../components/Loading';
 import Folder from '../../components/Folder';
 import { routes } from '../../config/constants';
+import ArtPreview from '../../components/ArtPreview';
 
-import { StyledArt, StyledContainer, StyledFolder, StyledFolders } from './styles';
+import { StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts } from './styles';
 
 export default function HomePage(): ReactElement {
   const [folders, setFolders] = useState<any>([]);
@@ -77,15 +78,15 @@ export default function HomePage(): ReactElement {
               <Folder name={folder.name}>
                 {arts?.isLoading === folder.id && <Loading />}
                 {folder.id === arts?.current?.folderId && (
-                  <>
+                  <StyledArts>
                     {arts?.current?.arts.map((art: any) => (
                       <StyledArt key={art.id}>
                         <Link to={routes.ART(art.id)}>
-                          {art.name}
+                          <ArtPreview {...art} />
                         </Link>
                       </StyledArt>
                     ))}
-                  </>
+                  </StyledArts>
                 )}
               </Folder>
             </StyledFolder>
