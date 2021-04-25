@@ -10,7 +10,8 @@ export const configKeys = {
 
 export const routes = {
   HOME: '/',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  ART: (artId: string): string => `/art/${artId}`
 };
 
 export const colors = {
