@@ -41,3 +41,5 @@ const getColorInfo = (art: ArtType): ColorInfoType => art.items.reduce((colorInf
 export const getArtInfo = (art: ArtType): ArtInfoType => ({
   colors: getColorInfo(art)
 });
+
+export const createItems = (rows: number, columns: number): Array<Array<string>> => Array(rows).fill(Array(columns).fill('black'));

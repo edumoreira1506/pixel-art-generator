@@ -5,13 +5,16 @@ export const configKeys = {
   COLUMNS: 'columns',
   MARGIN_BETWEEN: 'marginBetween',
   ROWS: 'rows',
-  COLOR: 'color'
+  COLOR: 'color',
+  NAME: 'name',
+  FOLDER: 'folder'
 };
 
 export const routes = {
   HOME: '/',
   LOGIN: '/login',
-  ART: (artId: string): string => `/art/${artId}`
+  ART: (artId: string): string => `/art/${artId}`,
+  NEW_ART: '/art/new',
 };
 
 export const colors = {

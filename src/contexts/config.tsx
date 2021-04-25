@@ -8,7 +8,9 @@ const INITIAL_CONFIGS = {
   [configKeys.COLUMNS]: 10,
   [configKeys.MARGIN_BETWEEN]: 2,
   [configKeys.ROWS]: 10,
-  [configKeys.COLOR]: '#000000'
+  [configKeys.COLOR]: '#000000',
+  [configKeys.NAME]: '',
+  [configKeys.FOLDER]: ''
 };
 
 export const ConfigContext = createContext({

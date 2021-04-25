@@ -1,5 +1,5 @@
 export type ArtType = {
-  id: string;
+  id?: string;
   name: string;
   itemWidth: number;
   marginBetween: number;
