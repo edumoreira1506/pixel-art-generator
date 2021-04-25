@@ -79,7 +79,21 @@ export default function HomePage(): ReactElement {
       onSuccess: handleFetchFolders,
       onError: error => window.alert(error)
     });
-  }, []);
+  }, [FolderService]);
+
+  const handleEditFolder = useCallback((folderId: string, newName: string) => {
+    FolderService.update(String(token), newName, folderId, {
+      onSuccess: handleFetchFolders,
+      onError: error => window.alert(error)
+    });
+  }, [FolderService]);
+
+  const handleRemoveFolder = useCallback((folderId: string) => {
+    FolderService.remove(String(token), folderId, {
+      onSuccess: handleFetchFolders,
+      onError: error => window.alert(error)
+    });
+  }, [FolderService]);
 
   return (
     <StyledContainer>
@@ -90,7 +104,7 @@ export default function HomePage(): ReactElement {
           <StyledFolders>
             {folders.map((folder: any, index: number) => (
               <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
-                <Folder name={folder.name}>
+                <Folder id={folder.id} name={folder.name} onEdit={handleEditFolder} onDelete={handleRemoveFolder}>
                   {arts?.isLoading === folder.id && <Loading />}
                   {folder.id === arts?.current?.folderId && (
                     <StyledArts>

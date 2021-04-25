@@ -1,21 +1,51 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { AiFillFolderOpen } from 'react-icons/ai';
+import React, { ReactElement, ReactNode, useCallback } from 'react';
+import { AiFillFolderOpen, AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
-import { StyledFolder, StyledName } from './styles';
+import { StyledActions, StyledFolder, StyledName, StyledAction } from './styles';
 
 type FolderPropsType = {
   name: string;
   children: ReactNode;
+  onEdit: (folderId: string, newName: string) => void;
+  onDelete: (folderId: string) => void;
+  id: string;
 }
 
-const Folder = ({ name, children }: FolderPropsType): ReactElement => (
-  <StyledFolder>
-    <StyledName>
-      <AiFillFolderOpen />
-      {name}
-    </StyledName>
-    {children}
-  </StyledFolder>
-);
+export default function Folder({ name, children, onEdit, onDelete, id }: FolderPropsType): ReactElement {
+  const handleEdit = useCallback((e: any) => {
+    e.stopPropagation();
 
-export default Folder;
+    const newName = window.prompt('Qual o novo nome da pasta?');
+
+    onEdit(id, String(newName));
+  }, [onEdit]);
+
+  const handleDelete = useCallback((e: any) => {
+    e.stopPropagation();
+
+    const canDelete = window.confirm('Tem certeza que deseja excluir a pasta?');
+
+    if (canDelete) {
+      onDelete(id);
+    }
+  }, [onDelete]);
+
+  return (
+    <StyledFolder>
+      <StyledName>
+        <AiFillFolderOpen />
+        {name}
+      </StyledName>
+      {children}
+  
+      <StyledActions>
+        <StyledAction onClick={handleEdit}>
+          <AiFillEdit />
+        </StyledAction>
+        <StyledAction onClick={handleDelete}>
+          <AiFillDelete />
+        </StyledAction>
+      </StyledActions>
+    </StyledFolder>
+  );
+}

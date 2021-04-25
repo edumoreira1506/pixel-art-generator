@@ -22,3 +22,18 @@ export const StyledName = styled.p`
     margin-right: 8px;
   }
 `;
+
+export const StyledActions = styled.div`
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+`;
+
+export const StyledAction = styled.span`
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
