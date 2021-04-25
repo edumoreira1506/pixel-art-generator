@@ -19,6 +19,22 @@ export default class FolderService {
     });
   }
 
+  static async store(token: string, name: string, callbacks: CallbackType): Promise<void> {
+    return api.post('/folders', { name }, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
   static async getFolderArts(token: string, folderId: string, callbacks: CallbackType): Promise<void> {
     return api.get(`/folders/${folderId}/arts`, {
       headers: {

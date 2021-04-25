@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import FolderService from '../../services/FolderService';
 import Loading from '../../components/Loading';
+import Button from '../../components/Button';
 import Folder from '../../components/Folder';
 import { routes } from '../../config/constants';
 import ArtPreview from '../../components/ArtPreview';
 
-import { StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts } from './styles';
+import { StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts, StyledNewFolderButton } from './styles';
 
 export default function HomePage(): ReactElement {
   const [folders, setFolders] = useState<any>([]);
@@ -16,7 +17,7 @@ export default function HomePage(): ReactElement {
   const [arts, setArts] = useState<any>({ cache: {}, current: null, isLoading: null });
   const { token } = useAuth();
 
-  useEffect(() => {
+  const handleFetchFolders = useCallback(() => {
     setIsLoading(true);
 
     FolderService.index(String(token), {
@@ -29,7 +30,11 @@ export default function HomePage(): ReactElement {
         setIsLoading(false);
       }
     });
-  }, []);
+  }, [FolderService]);
+
+  useEffect(() => {
+    handleFetchFolders();
+  }, [handleFetchFolders]);
 
   const handleToggleFolderArts = useCallback(async (index) => {
     const folder = folders[index];
@@ -67,31 +72,47 @@ export default function HomePage(): ReactElement {
     }
   }, [folders, arts]);
 
+  const handleAddNewFolder = useCallback(() => {
+    const newFolderName = window.prompt('Qual o nome da nova pasta?');
+
+    FolderService.store(String(token), String(newFolderName), {
+      onSuccess: handleFetchFolders,
+      onError: error => window.alert(error)
+    });
+  }, []);
+
   return (
     <StyledContainer>
       {isLoading ? (
         <Loading />
       ) : (
-        <StyledFolders>
-          {folders.map((folder: any, index: number) => (
-            <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
-              <Folder name={folder.name}>
-                {arts?.isLoading === folder.id && <Loading />}
-                {folder.id === arts?.current?.folderId && (
-                  <StyledArts>
-                    {arts?.current?.arts.map((art: any) => (
-                      <StyledArt key={art.id}>
-                        <Link to={routes.ART(art.id)}>
-                          <ArtPreview {...art} />
-                        </Link>
-                      </StyledArt>
-                    ))}
-                  </StyledArts>
-                )}
-              </Folder>
-            </StyledFolder>
-          ))}
-        </StyledFolders>
+        <>
+          <StyledFolders>
+            {folders.map((folder: any, index: number) => (
+              <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
+                <Folder name={folder.name}>
+                  {arts?.isLoading === folder.id && <Loading />}
+                  {folder.id === arts?.current?.folderId && (
+                    <StyledArts>
+                      {arts?.current?.arts.map((art: any) => (
+                        <StyledArt key={art.id}>
+                          <Link to={routes.ART(art.id)}>
+                            <ArtPreview {...art} />
+                          </Link>
+                        </StyledArt>
+                      ))}
+                    </StyledArts>
+                  )}
+                </Folder>
+              </StyledFolder>
+            ))}
+          </StyledFolders>
+          <StyledNewFolderButton>
+            <Button onClick={handleAddNewFolder}>
+              Nova pasta
+            </Button>
+          </StyledNewFolderButton>
+        </>
       )}
     </StyledContainer>
   );

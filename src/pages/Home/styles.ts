@@ -6,6 +6,7 @@ export const StyledContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const StyledFolders = styled.ul`
@@ -13,18 +14,18 @@ export const StyledFolders = styled.ul`
   padding: 0;
   margin: 0;
   width: 90%;
-  min-height: 100%;
-  padding-top: 35px;
+  min-height: 90%;
 `;
 
 export const StyledFolder = styled.li`
   width: 100%;
   margin-bottom: 15px;
+  position: relative;
 
   .lds-roller {
     transform: scale(0.2);
     right: 10px;
-    top: 0;
+    top: -12px;
     position: absolute;
   }
 `;
@@ -44,4 +45,10 @@ export const StyledArts = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+`;
+
+export const StyledNewFolderButton = styled.div`
+  height: 8%;
+  margin-top: 5px;
+  width: 90%;
 `;
