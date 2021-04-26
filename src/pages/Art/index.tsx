@@ -10,7 +10,7 @@ import useDebouncedEffect from '../../hooks/useDebouncedEffect';
 import useRouter from '../../hooks/useRouter';
 import FolderService from '../../services/FolderService';
 
-import { StyledContainer } from './styles';
+import { StyledContainer, StyledColorPicker, StyledName } from './styles';
 
 export default function ArtPage(): ReactElement {
   const { params: { folderId, artId } } = useRouter();
@@ -64,13 +64,16 @@ export default function ArtPage(): ReactElement {
     <StyledContainer>
       {(isLoading || !name) ? <Loading /> : (
         <>
+          <StyledName>
+            {name}
+          </StyledName>
           <ToastContainer />
-          <div>
+          <StyledColorPicker>
             <SketchPicker
               color={color}
               onChange={({ hex }) => setColor(hex)}
             />
-          </div>
+          </StyledColorPicker>
           <Board
             items={items}
             onChange={setItems}
