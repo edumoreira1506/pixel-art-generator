@@ -1,6 +1,7 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { toast, ToastContainer } from 'react-toastify';
+import { exportComponentAsPNG } from 'react-component-export-image';
 import 'react-toastify/dist/ReactToastify.css';
   
 import Board from '../../components/Board';
@@ -9,8 +10,9 @@ import useAuth from '../../hooks/useAuth';
 import useDebouncedEffect from '../../hooks/useDebouncedEffect';
 import useRouter from '../../hooks/useRouter';
 import FolderService from '../../services/FolderService';
+import Button from '../../components/Button';
 
-import { StyledContainer, StyledColorPicker, StyledName } from './styles';
+import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButton } from './styles';
 
 export default function ArtPage(): ReactElement {
   const { params: { folderId, artId } } = useRouter();
@@ -21,6 +23,7 @@ export default function ArtPage(): ReactElement {
   const [color, setColor] = useState('black');
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
+  const pixelArtRef = useRef<any>();
 
   useEffect(() => {
     const fetchArt = async () => {
@@ -60,6 +63,8 @@ export default function ArtPage(): ReactElement {
     updateArt();
   }, 5000, [items]);
 
+  const handleExportToImage = () => exportComponentAsPNG(pixelArtRef);
+
   return (
     <StyledContainer>
       {(isLoading || !name) ? <Loading /> : (
@@ -74,13 +79,20 @@ export default function ArtPage(): ReactElement {
               onChange={({ hex }) => setColor(hex)}
             />
           </StyledColorPicker>
-          <Board
-            items={items}
-            onChange={setItems}
-            margin={marginBetween}
-            size={itemWidth}
-            color={color}
-          />
+          <StyledBoard ref={pixelArtRef}>
+            <Board
+              items={items}
+              onChange={setItems}
+              margin={marginBetween}
+              size={itemWidth}
+              color={color}
+            />
+          </StyledBoard>
+          <StyledButton>
+            <Button onClick={handleExportToImage}>
+              Exportar
+            </Button>
+          </StyledButton>
         </>
       )}
     </StyledContainer>

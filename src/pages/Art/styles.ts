@@ -24,3 +24,15 @@ export const StyledName = styled.p`
   padding-bottom: 15px;
   border-bottom: solid 1px ${colors.BLACK};
 `;
+
+export const StyledBoard = styled.div`
+  display: flex;
+  width: auto;
+  height: auto;
+`;
+
+export const StyledButton = styled.div`
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 20px;
+`;
