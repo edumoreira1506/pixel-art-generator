@@ -84,6 +84,22 @@ export default class FolderService {
     });
   }
 
+  static async getFolderArt(token: string, folderId: string, artId: string, callbacks: CallbackType): Promise<void> {
+    return api.get(`/folders/${folderId}/arts/${artId}`, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
   static async registerArt(token: string, folderId: string, art: ArtType, callbacks: CallbackType): Promise<void> {
     return api.post(`/folders/${folderId}/arts`, art, {
       headers: {

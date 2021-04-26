@@ -3,7 +3,7 @@ import { ArtType } from '../../@types/art';
 
 import Box from '../../components/Box';
 import { routes } from '../../config/constants';
-import BoardContainer from '../../containers/Board';
+import PreviewContainer from '../../containers/Preview';
 import ConfigContainer from '../../containers/Config';
 import { ConfigProvider } from '../../contexts/config';
 import useAuth from '../../hooks/useAuth';
@@ -27,7 +27,7 @@ export default function NewArtPage(): ReactElement {
       },
       onSuccess: ({ art }) => {
         setIsLoading(false);
-        setRoute(routes.ART(art.id));
+        setRoute(routes.ART(folder, art.id));
       }
     });
   }, [FolderService, token]);
@@ -39,7 +39,7 @@ export default function NewArtPage(): ReactElement {
         <ConfigContainer isLoading={isLoading} onSave={handleCreateArt} />
         <StyledSubtitle>Preview:</StyledSubtitle>
         <StyledBoard>
-          <BoardContainer />
+          <PreviewContainer />
         </StyledBoard>
       </Box>
     </ConfigProvider>

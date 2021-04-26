@@ -20,7 +20,7 @@ const Routes = (): ReactElement => (
 
       <PrivateRoute exact path={routes.NEW_ART} component={NewArt} />
 
-      <PrivateRoute exact path={routes.ART(':artId')} component={Art} />
+      <PrivateRoute exact path={routes.ART(':folderId', ':artId')} component={Art} />
     </Switch>
   </BrowserRouter>
 );

@@ -13,7 +13,7 @@ export const configKeys = {
 export const routes = {
   HOME: '/',
   LOGIN: '/login',
-  ART: (artId: string): string => `/art/${artId}`,
+  ART: (folderId: string, artId: string): string => `/folder/${folderId}/art/${artId}`,
   NEW_ART: '/art/new',
 };
 

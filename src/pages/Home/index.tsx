@@ -114,7 +114,7 @@ export default function HomePage(): ReactElement {
                     <StyledArts>
                       {arts?.current?.arts.map((art: any) => (
                         <StyledArt key={art.id}>
-                          <Link to={routes.ART(art.id)}>
+                          <Link to={routes.ART(folder.id, art.id)}>
                             <ArtPreview {...art} />
                           </Link>
                         </StyledArt>
