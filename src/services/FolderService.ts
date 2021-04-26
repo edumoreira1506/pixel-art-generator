@@ -100,6 +100,22 @@ export default class FolderService {
     });
   }
 
+  static async updateFolderArt(token: string, folderId: string, artId: string, art: ArtType, callbacks: CallbackType): Promise<void> {
+    return api.patch(`/folders/${folderId}/arts/${artId}`, art, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
   static async registerArt(token: string, folderId: string, art: ArtType, callbacks: CallbackType): Promise<void> {
     return api.post(`/folders/${folderId}/arts`, art, {
       headers: {

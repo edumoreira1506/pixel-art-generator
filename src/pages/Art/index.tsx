@@ -1,9 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
 import Board from '../../components/Board';
 import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
+import useDebouncedEffect from '../../hooks/useDebouncedEffect';
 import useRouter from '../../hooks/useRouter';
 import FolderService from '../../services/FolderService';
 
@@ -41,10 +44,27 @@ export default function ArtPage(): ReactElement {
     fetchArt();
   }, [FolderService]);
 
+  useDebouncedEffect(() => {
+    const updateArt = () => {
+      FolderService.updateFolderArt(String(token), folderId, artId, {
+        items,
+        marginBetween,
+        itemWidth,
+        name,
+      }, {
+        onError: console.log,
+        onSuccess: () => toast('Progresso salvo!'),
+      });
+    };
+
+    updateArt();
+  }, 5000, [items]);
+
   return (
     <StyledContainer>
       {(isLoading || !name) ? <Loading /> : (
         <>
+          <ToastContainer />
           <div>
             <SketchPicker
               color={color}
