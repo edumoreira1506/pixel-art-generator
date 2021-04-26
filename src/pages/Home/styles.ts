@@ -48,7 +48,13 @@ export const StyledArts = styled.div`
 `;
 
 export const StyledNewFolderButton = styled.div`
-  height: 8%;
-  margin-top: 5px;
+  height: 7%;
+  margin-top: 2px;
+  width: 90%;
+`;
+
+export const StyledNewArtButton = styled.div`
+  height: 7%;
+  margin-top: 2px;
   width: 90%;
 `;

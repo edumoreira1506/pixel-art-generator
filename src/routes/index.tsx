@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Art from '../pages/Art';
+import NewArt from '../pages/NewArt';
 
 import { routes } from '../config/constants';
 
@@ -17,7 +18,9 @@ const Routes = (): ReactElement => (
 
       <PrivateRoute exact path={routes.HOME} component={Home} />
 
-      <PrivateRoute exact path={routes.ART(':artId')} component={Art} />
+      <PrivateRoute exact path={routes.NEW_ART} component={NewArt} />
+
+      <PrivateRoute exact path={routes.ART(':folderId', ':artId')} component={Art} />
     </Switch>
   </BrowserRouter>
 );

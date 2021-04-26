@@ -1,6 +1,7 @@
 import api from './api';
 
 import { CallbackType } from '../@types/callbacks';
+import { ArtType } from '../@types/art';
 
 export default class FolderService {
   static async index(token: string, callbacks: CallbackType): Promise<void> {
@@ -69,6 +70,54 @@ export default class FolderService {
 
   static async getFolderArts(token: string, folderId: string, callbacks: CallbackType): Promise<void> {
     return api.get(`/folders/${folderId}/arts`, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
+  static async getFolderArt(token: string, folderId: string, artId: string, callbacks: CallbackType): Promise<void> {
+    return api.get(`/folders/${folderId}/arts/${artId}`, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
+  static async updateFolderArt(token: string, folderId: string, artId: string, art: ArtType, callbacks: CallbackType): Promise<void> {
+    return api.patch(`/folders/${folderId}/arts/${artId}`, art, {
+      headers: {
+        Authorization: token
+      }
+    }).then(response => {
+      const { data } = response;
+
+      return callbacks.onSuccess(data);
+    }).catch(errors => {
+      const error = errors?.response?.data?.error;
+
+      return callbacks.onError(error?.message ?? '');
+    });
+  }
+
+  static async registerArt(token: string, folderId: string, art: ArtType, callbacks: CallbackType): Promise<void> {
+    return api.post(`/folders/${folderId}/arts`, art, {
       headers: {
         Authorization: token
       }

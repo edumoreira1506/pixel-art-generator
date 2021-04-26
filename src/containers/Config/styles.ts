@@ -5,3 +5,11 @@ export const StyledSlider = styled.div`
   flex-direction: column;
   width: 90%;
 `;
+
+export const StyledField = styled.div`
+  margin-bottom: 15px;
+
+  .lds-roller {
+    transform: scale(0.2);
+  }
+`;

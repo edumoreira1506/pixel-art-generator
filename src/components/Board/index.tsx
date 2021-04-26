@@ -18,7 +18,7 @@ export default function Board({ items, margin, onChange, size, color }: BoardPro
   const setUserIsNotDrawing = () => setIsDrawing(false);
 
   const handleChangeItemColor = (row: number, column: number) => {
-    onChange(prevItems => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
+    onChange((prevItems: any) => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
       rowItem.map((columnItem: string, columnIndex: number) => columnIndex === column ? color: columnItem)
     ) : ([ ...rowItem ])));
   };

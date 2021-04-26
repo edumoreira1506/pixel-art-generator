@@ -8,14 +8,16 @@ import Button from '../../components/Button';
 import Folder from '../../components/Folder';
 import { routes } from '../../config/constants';
 import ArtPreview from '../../components/ArtPreview';
+import useRouter from '../../hooks/useRouter';
 
-import { StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts, StyledNewFolderButton } from './styles';
+import { StyledNewArtButton, StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts, StyledNewFolderButton } from './styles';
 
 export default function HomePage(): ReactElement {
   const [folders, setFolders] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [arts, setArts] = useState<any>({ cache: {}, current: null, isLoading: null });
   const { token } = useAuth();
+  const { setRoute } = useRouter();
 
   const handleFetchFolders = useCallback(() => {
     setIsLoading(true);
@@ -81,6 +83,8 @@ export default function HomePage(): ReactElement {
     });
   }, [FolderService]);
 
+  const handleAddNewArt = useCallback(() => setRoute(routes.NEW_ART), [setRoute]);
+
   const handleEditFolder = useCallback((folderId: string, newName: string) => {
     FolderService.update(String(token), newName, folderId, {
       onSuccess: handleFetchFolders,
@@ -110,7 +114,7 @@ export default function HomePage(): ReactElement {
                     <StyledArts>
                       {arts?.current?.arts.map((art: any) => (
                         <StyledArt key={art.id}>
-                          <Link to={routes.ART(art.id)}>
+                          <Link to={routes.ART(folder.id, art.id)}>
                             <ArtPreview {...art} />
                           </Link>
                         </StyledArt>
@@ -126,6 +130,11 @@ export default function HomePage(): ReactElement {
               Nova pasta
             </Button>
           </StyledNewFolderButton>
+          <StyledNewArtButton>
+            <Button onClick={handleAddNewArt}>
+              Nova arte
+            </Button>
+          </StyledNewArtButton>
         </>
       )}
     </StyledContainer>
