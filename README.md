@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# pixel-art-generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This project was made to an academic test
 
-## Available Scripts
+## Dependencies
 
-In the project directory, you can run:
+```
+NodeJS >= 14.16.0
+Yarn >= 1.22.10
+```
 
-### `yarn start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clone the project.
+```console
+$ git clone git@github.com:edumoreira1506/pixel-art-generator.git
+$ cd pixel-art-generator
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Copy the contents of the `.env.sample` to `.env` then change with the credentials of your local environment.
 
-### `yarn test`
+```console
+$ cp .env.sample .env
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install all packages.
+```console
+$ yarn
+```
 
-### `yarn build`
+For run server local.
+```console
+$ yarn start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For run tests.
+```console
+$ yarn test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Linter
 
-### `yarn eject`
+For run eslint.
+```console
+$ yarn lint
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Patterns
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I have followed the patterns:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Information Expert (GRASP)
+- Low Coupling (GRASP)
+- High Cohesion (GRASP)
+- Method Factory (GoF)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Academic info
 
-## Learn More
+- Academic: Antonio Eduardo Moreira
+- Teacher: Denis Lucas Silva
+- Subject: Padrões de projeto (Project Patterns)
+- University: Universidade Tecnológica Federal do Paraná
+- Academic year: 02/2020
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## References
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React: https://pt-br.reactjs.org/
+- Jest: https://jestjs.io/pt-BR/
+- Typescript: https://www.typescriptlang.org/
+- Eslint: https://eslint.org/
