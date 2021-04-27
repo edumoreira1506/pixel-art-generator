@@ -39,3 +39,8 @@ export const StyledButton = styled.div`
   width: 50%;
   margin-bottom: 15px;
 `;
+
+export const StyledSlider = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;
