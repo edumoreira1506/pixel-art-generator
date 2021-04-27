@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { APP_TITLE, routes } from '../../config/constants';
 import useAuth from '../../hooks/useAuth';
-import StoreService from '../../services/StoreService';
+import StorageService from '../../services/StorageService';
 
 import { StyledHeader, StyledText } from './styles';
 
@@ -13,7 +13,7 @@ export default function Header(): ReactElement {
 
   const handleLogout = useCallback(() => {
     setToken('');
-    StoreService.clear();
+    StorageService.clear();
   }, []);
 
   return (

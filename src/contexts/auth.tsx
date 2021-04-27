@@ -1,9 +1,9 @@
 import React, { useState, createContext, ReactElement } from 'react';
 
 import { ProviderProps } from '../@types/provider';
-import StoreService from '../services/StoreService';
+import StorageService from '../services/StorageService';
 
-const INITIAL_TOKEN_VALUE = StoreService.getToken();
+const INITIAL_TOKEN_VALUE = StorageService.getToken();
 
 export const AuthContext = createContext({
   token: INITIAL_TOKEN_VALUE,

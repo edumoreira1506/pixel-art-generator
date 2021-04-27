@@ -44,8 +44,8 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
   }, []);
 
   const foldersOptions = useMemo(() => folders.map(({ id, name }) => ({
-    label: name,
-    value: id,
+    label: String(name),
+    value: String(id),
   })), [folders]);
 
   const handleSaveConfig = useCallback(() => {

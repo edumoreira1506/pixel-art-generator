@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 import AuthService from '../../services/AuthService';
-import StoreService from '../../services/StoreService';
+import StorageService from '../../services/StorageService';
 
 import { StyledContainer, StyledField, StyledForm, StyledWrapper } from './styles';
 
@@ -26,7 +26,7 @@ export default function LoginPage(): ReactElement {
         window.alert(message);
       },
       onSuccess: ({ token }) => {
-        StoreService.setToken(token);
+        StorageService.setToken(token);
         setIsLoading(true);
         setToken(token);
       }

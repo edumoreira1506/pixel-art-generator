@@ -1,6 +1,6 @@
 const TOKEN_KEY = 'token';
 
-export default class StoreService {
+export default class StorageService {
   static getToken(): string {
     return window.localStorage.getItem(TOKEN_KEY) || '';
   }
