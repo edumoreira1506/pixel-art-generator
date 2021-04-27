@@ -15,7 +15,7 @@ export default function Folder({ name, children, onEdit, onDelete, id }: FolderP
   const handleEdit = useCallback((e: any) => {
     e.stopPropagation();
 
-    const newName = window.prompt('Qual o novo nome da pasta?');
+    const newName = window.prompt('What is the new name of folder?');
 
     onEdit(id, String(newName));
   }, [onEdit]);
@@ -23,7 +23,7 @@ export default function Folder({ name, children, onEdit, onDelete, id }: FolderP
   const handleDelete = useCallback((e: any) => {
     e.stopPropagation();
 
-    const canDelete = window.confirm('Tem certeza que deseja excluir a pasta?');
+    const canDelete = window.confirm('Confirm delete?');
 
     if (canDelete) {
       onDelete(id);
