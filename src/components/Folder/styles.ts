@@ -27,6 +27,10 @@ export const StyledActions = styled.div`
   position: absolute;
   right: 5px;
   bottom: 5px;
+
+  @media (min-width: 768px) {
+    right: 15px;
+  }
 `;
 
 export const StyledAction = styled.span`

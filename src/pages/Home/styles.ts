@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.section`
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -40,6 +39,10 @@ export const StyledArt = styled.div`
     color: black;
     text-decoration: none;
   }
+
+  @media (min-width: 768px) {
+    width: 30%;
+  }
 `;
 
 export const StyledArts = styled.div`
@@ -47,6 +50,11 @@ export const StyledArts = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    align-items: stretch;
+  }
 `;
 
 export const StyledNewFolderButton = styled.div`

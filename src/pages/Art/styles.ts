@@ -34,7 +34,8 @@ export const StyledBoard = styled.div`
 `;
 
 export const StyledButton = styled.div`
-  width: 95%;
   margin: 0 auto;
   padding-top: 20px;
+  width: 50%;
+  margin-bottom: 15px;
 `;

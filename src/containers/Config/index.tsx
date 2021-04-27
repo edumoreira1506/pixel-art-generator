@@ -34,7 +34,6 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
       FolderService.index(String(token), {
         onError: error => window.alert(error),
         onSuccess: ({ folders: foldersApi }) => {
-          setFolder(foldersApi?.[0]?.id ?? '');
           setFolders(foldersApi);
         }
       });
