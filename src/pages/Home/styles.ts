@@ -15,7 +15,8 @@ export const StyledFolders = styled.ul`
   padding: 0;
   margin: 0;
   width: 90%;
-  min-height: 80%;
+  height: 80%;
+  overflow: hidden auto;
 `;
 
 export const StyledFolder = styled.li`

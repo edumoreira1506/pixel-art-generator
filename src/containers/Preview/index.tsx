@@ -19,7 +19,6 @@ const PreviewContainer = (): ReactElement => {
   return (
     <Board
       items={items}
-      onChange={setItems}
       margin={marginBetween}
       size={itemWidth}
       color={color}
