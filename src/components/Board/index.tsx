@@ -5,20 +5,22 @@ import { StyledBoard, StyledBoardItem, StyledBoardRow } from './styles';
 type BoardPropsType = {
   items: Array<Array<string>>;
   margin: number;
-  onChange: Dispatch<SetStateAction<any[]>>;
+  onChange?: Dispatch<SetStateAction<any[]>>;
   size: number;
   color: string;
 };
 
 export default function Board({ items, margin, onChange, size, color }: BoardPropsType): ReactElement {
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const boardRef = useRef<any>();
 
   const setUserIsDrawing = () => setIsDrawing(true);
   const setUserIsNotDrawing = () => setIsDrawing(false);
 
   const handleChangeItemColor = (row: number, column: number) => {
-    onChange((prevItems: any) => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
+    if (!onChange) return;
+
+    onChange((prevItems: Array<Array<string>>) => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
       rowItem.map((columnItem: string, columnIndex: number) => columnIndex === column ? color: columnItem)
     ) : ([ ...rowItem ])));
   };

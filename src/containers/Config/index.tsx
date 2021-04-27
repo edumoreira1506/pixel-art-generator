@@ -11,6 +11,7 @@ import Button from '../../components/Button';
 import Loading from '../../components/Loading';
 import { ArtType } from '../../@types/art';
 import { createItems } from '../../utils/art';
+import { FolderType } from '../../@types/folder';
 
 import { StyledSlider, StyledField } from './styles';
 
@@ -26,7 +27,7 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
   const [rows, setRows] = useConfig(configKeys.ROWS);
   const [name, setName] = useConfig(configKeys.NAME);
   const [folder, setFolder] = useConfig(configKeys.FOLDER);
-  const [folders, setFolders] = useState([]);
+  const [folders, setFolders] = useState<Array<FolderType>>([]);
   const { token } = useAuth();
 
   useEffect(() => {
@@ -34,7 +35,6 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
       FolderService.index(String(token), {
         onError: error => window.alert(error),
         onSuccess: ({ folders: foldersApi }) => {
-          setFolder(foldersApi?.[0]?.id ?? '');
           setFolders(foldersApi);
         }
       });
@@ -44,8 +44,8 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
   }, []);
 
   const foldersOptions = useMemo(() => folders.map(({ id, name }) => ({
-    label: name,
-    value: id,
+    label: String(name),
+    value: String(id),
   })), [folders]);
 
   const handleSaveConfig = useCallback(() => {

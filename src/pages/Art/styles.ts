@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { colors } from '../../config/constants';
 
 export const StyledContainer = styled.div`
+  margin-top: 65px;
+
   .lds-roller {
     position: absolute;
     right: 50%;
@@ -32,7 +34,13 @@ export const StyledBoard = styled.div`
 `;
 
 export const StyledButton = styled.div`
-  width: 95%;
   margin: 0 auto;
   padding-top: 20px;
+  width: 50%;
+  margin-bottom: 15px;
+`;
+
+export const StyledSlider = styled.div`
+  width: 90%;
+  margin: 0 auto;
 `;

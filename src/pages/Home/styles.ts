@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.section`
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-top: 20px;
 `;
 
 export const StyledFolders = styled.ul`
@@ -14,7 +14,8 @@ export const StyledFolders = styled.ul`
   padding: 0;
   margin: 0;
   width: 90%;
-  min-height: 90%;
+  height: 80%;
+  overflow: hidden auto;
 `;
 
 export const StyledFolder = styled.li`
@@ -38,6 +39,10 @@ export const StyledArt = styled.div`
     color: black;
     text-decoration: none;
   }
+
+  @media (min-width: 768px) {
+    width: 30%;
+  }
 `;
 
 export const StyledArts = styled.div`
@@ -45,16 +50,19 @@ export const StyledArts = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+    align-items: stretch;
+  }
 `;
 
 export const StyledNewFolderButton = styled.div`
-  height: 7%;
   margin-top: 2px;
   width: 90%;
 `;
 
 export const StyledNewArtButton = styled.div`
-  height: 7%;
   margin-top: 2px;
   width: 90%;
 `;

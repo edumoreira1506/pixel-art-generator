@@ -9,11 +9,13 @@ import Folder from '../../components/Folder';
 import { routes } from '../../config/constants';
 import ArtPreview from '../../components/ArtPreview';
 import useRouter from '../../hooks/useRouter';
+import { ArtType } from '../../@types/art';
+import { FolderType } from '../../@types/folder';
 
 import { StyledNewArtButton, StyledArt, StyledContainer, StyledFolder, StyledFolders, StyledArts, StyledNewFolderButton } from './styles';
 
 export default function HomePage(): ReactElement {
-  const [folders, setFolders] = useState<any>([]);
+  const [folders, setFolders] = useState<Array<FolderType>>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [arts, setArts] = useState<any>({ cache: {}, current: null, isLoading: null });
   const { token } = useAuth();
@@ -40,7 +42,7 @@ export default function HomePage(): ReactElement {
 
   const handleToggleFolderArts = useCallback(async (index) => {
     const folder = folders[index];
-    const folderId = folder.id;
+    const folderId = String(folder.id);
     const cachedArts = arts.cache[folderId];
 
     if (cachedArts) {
@@ -106,15 +108,15 @@ export default function HomePage(): ReactElement {
       ) : (
         <>
           <StyledFolders>
-            {folders.map((folder: any, index: number) => (
+            {folders.map((folder: FolderType, index: number) => (
               <StyledFolder key={folder.id} onClick={() => handleToggleFolderArts(index)}>
-                <Folder id={folder.id} name={folder.name} onEdit={handleEditFolder} onDelete={handleRemoveFolder}>
+                <Folder id={String(folder.id)} name={folder.name} onEdit={handleEditFolder} onDelete={handleRemoveFolder}>
                   {arts?.isLoading === folder.id && <Loading />}
                   {folder.id === arts?.current?.folderId && (
                     <StyledArts>
-                      {arts?.current?.arts.map((art: any) => (
+                      {arts?.current?.arts.map((art: ArtType) => (
                         <StyledArt key={art.id}>
-                          <Link to={routes.ART(folder.id, art.id)}>
+                          <Link to={routes.ART(String(folder.id), String(art.id))}>
                             <ArtPreview {...art} />
                           </Link>
                         </StyledArt>

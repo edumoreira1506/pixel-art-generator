@@ -5,14 +5,14 @@ import Input from '../../components/Input';
 import Loading from '../../components/Loading';
 import useAuth from '../../hooks/useAuth';
 import AuthService from '../../services/AuthService';
-import StoreService from '../../services/StoreService';
+import StorageService from '../../services/StorageService';
 
 import { StyledContainer, StyledField, StyledForm, StyledWrapper } from './styles';
 
 export default function LoginPage(): ReactElement {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setToken } = useAuth();
 
   const handleLogin = useCallback((e) => {
@@ -26,7 +26,7 @@ export default function LoginPage(): ReactElement {
         window.alert(message);
       },
       onSuccess: ({ token }) => {
-        StoreService.setToken(token);
+        StorageService.setToken(token);
         setIsLoading(true);
         setToken(token);
       }

@@ -11,17 +11,19 @@ import useDebouncedEffect from '../../hooks/useDebouncedEffect';
 import useRouter from '../../hooks/useRouter';
 import FolderService from '../../services/FolderService';
 import Button from '../../components/Button';
+import Slider from '../../components/Slider';
 
-import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButton } from './styles';
+import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButton, StyledSlider } from './styles';
 
 export default function ArtPage(): ReactElement {
   const { params: { folderId, artId } } = useRouter();
-  const [items, setItems] = useState<any>([]);
-  const [name, setName] = useState('');
-  const [marginBetween, setMarginBetween] = useState(0);
-  const [itemWidth, setItemWidth] = useState(0);
-  const [color, setColor] = useState('black');
-  const [isLoading, setIsLoading] = useState(false);
+  const [items, setItems] = useState<Array<Array<string>>>([]);
+  const [name, setName] = useState<string>('');
+  const [marginBetween, setMarginBetween] = useState<number>(0);
+  const [itemWidth, setItemWidth] = useState<number>(0);
+  const [color, setColor] = useState<string>('black');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showConfig, setShowConfig] = useState<boolean>(false);
   const { token } = useAuth();
   const pixelArtRef = useRef<any>();
 
@@ -61,9 +63,13 @@ export default function ArtPage(): ReactElement {
     };
 
     updateArt();
-  }, 5000, [items]);
+  }, 5000, [items, marginBetween, itemWidth, name, folderId, artId, token]);
 
-  const handleExportToImage = () => exportComponentAsPNG(pixelArtRef);
+  const handleExportToImage = () => exportComponentAsPNG(pixelArtRef, {
+    fileName: name
+  });
+
+  const handleToggleConfig = () => setShowConfig(!showConfig);
 
   return (
     <StyledContainer>
@@ -93,6 +99,17 @@ export default function ArtPage(): ReactElement {
               Exportar
             </Button>
           </StyledButton>
+          <StyledButton>
+            <Button onClick={handleToggleConfig}>
+              {showConfig ? 'Salvar' : 'Editar'} configurações
+            </Button>
+          </StyledButton>
+          {showConfig && (
+            <StyledSlider>
+              <Slider label="Largura do 'pixel'" value={Number(itemWidth)} onChange={setItemWidth} />
+              <Slider label="Espaço entre os pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
+            </StyledSlider>
+          )}
         </>
       )}
     </StyledContainer>

@@ -28,11 +28,13 @@ export const StyledName = styled.p`
 `;
 
 export const StyledColors = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 10px 0;
+  padding: 10px 0;
+  margin: 0 auto;
+  flex-wrap: wrap;
 `;
 
 export const StyledColor = styled.div`
@@ -49,4 +51,13 @@ export const StyledColor = styled.div`
   ${({ color }) => `
     background-color: ${color};
   `}
+`;
+
+export const StyledPreview = styled.div`
+  margin-top: 10px;
+
+  li {
+    max-width: 15px;
+    max-height: 15px;
+  }
 `;

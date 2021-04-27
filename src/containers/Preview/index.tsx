@@ -10,7 +10,7 @@ const PreviewContainer = (): ReactElement => {
   const [marginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
   const [color] = useConfig(configKeys.COLOR);
   const [rows] = useConfig(configKeys.ROWS);
-  const [items, setItems] = useState(createItems(rows, columns));
+  const [items, setItems] = useState<Array<Array<string>>>(createItems(rows, columns));
 
   useEffect(() => {
     setItems(createItems(rows, columns));
@@ -19,7 +19,6 @@ const PreviewContainer = (): ReactElement => {
   return (
     <Board
       items={items}
-      onChange={setItems}
       margin={marginBetween}
       size={itemWidth}
       color={color}

@@ -13,7 +13,7 @@ import FolderService from '../../services/FolderService';
 import { StyledTitle, StyledBoard, StyledSubtitle } from './styles';
 
 export default function NewArtPage(): ReactElement {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setRoute } = useRouter();
   const { token } = useAuth();
 
