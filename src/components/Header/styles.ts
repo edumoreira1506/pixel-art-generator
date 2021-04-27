@@ -27,4 +27,9 @@ export const StyledText = styled.p`
   margin: 0;
   padding-left: 5%;
   text-align: left;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
