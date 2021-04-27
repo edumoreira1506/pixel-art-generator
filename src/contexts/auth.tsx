@@ -8,12 +8,12 @@ const INITIAL_TOKEN_VALUE = StoreService.getToken();
 export const AuthContext = createContext({
   token: INITIAL_TOKEN_VALUE,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setToken: (_object: any): any => null,
+  setToken: (_object: string): any => null,
   isAuthenticated: false,
 });
 
 export const AuthProvider = ({ children }: ProviderProps): ReactElement => {
-  const [token, setToken] = useState(INITIAL_TOKEN_VALUE);
+  const [token, setToken] = useState<string>(INITIAL_TOKEN_VALUE);
 
   const contextProviderValue = { token, setToken, isAuthenticated: Boolean(token) };
 

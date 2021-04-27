@@ -11,7 +11,7 @@ type BoardPropsType = {
 };
 
 export default function Board({ items, margin, onChange, size, color }: BoardPropsType): ReactElement {
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const boardRef = useRef<any>();
 
   const setUserIsDrawing = () => setIsDrawing(true);
@@ -20,7 +20,7 @@ export default function Board({ items, margin, onChange, size, color }: BoardPro
   const handleChangeItemColor = (row: number, column: number) => {
     if (!onChange) return;
 
-    onChange((prevItems: any) => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
+    onChange((prevItems: Array<Array<string>>) => prevItems.map((rowItem: Array<string>, rowIndex: number) => rowIndex === row ? (
       rowItem.map((columnItem: string, columnIndex: number) => columnIndex === column ? color: columnItem)
     ) : ([ ...rowItem ])));
   };

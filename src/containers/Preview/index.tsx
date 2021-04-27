@@ -10,7 +10,7 @@ const PreviewContainer = (): ReactElement => {
   const [marginBetween] = useConfig(configKeys.MARGIN_BETWEEN);
   const [color] = useConfig(configKeys.COLOR);
   const [rows] = useConfig(configKeys.ROWS);
-  const [items, setItems] = useState(createItems(rows, columns));
+  const [items, setItems] = useState<Array<Array<string>>>(createItems(rows, columns));
 
   useEffect(() => {
     setItems(createItems(rows, columns));

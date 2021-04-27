@@ -16,12 +16,12 @@ import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButt
 
 export default function ArtPage(): ReactElement {
   const { params: { folderId, artId } } = useRouter();
-  const [items, setItems] = useState<any>([]);
-  const [name, setName] = useState('');
-  const [marginBetween, setMarginBetween] = useState(0);
-  const [itemWidth, setItemWidth] = useState(0);
-  const [color, setColor] = useState('black');
-  const [isLoading, setIsLoading] = useState(false);
+  const [items, setItems] = useState<Array<Array<string>>>([]);
+  const [name, setName] = useState<string>('');
+  const [marginBetween, setMarginBetween] = useState<number>(0);
+  const [itemWidth, setItemWidth] = useState<number>(0);
+  const [color, setColor] = useState<string>('black');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { token } = useAuth();
   const pixelArtRef = useRef<any>();
 

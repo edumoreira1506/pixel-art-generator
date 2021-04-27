@@ -1,4 +1,4 @@
 export type CallbackType = {
   onError: (value: string) => void;
-  onSuccess: (vlaue: Record<string, any>) => void;
+  onSuccess: (value: Record<string, any>) => void;
 }

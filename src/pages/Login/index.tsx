@@ -10,9 +10,9 @@ import StoreService from '../../services/StoreService';
 import { StyledContainer, StyledField, StyledForm, StyledWrapper } from './styles';
 
 export default function LoginPage(): ReactElement {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setToken } = useAuth();
 
   const handleLogin = useCallback((e) => {
