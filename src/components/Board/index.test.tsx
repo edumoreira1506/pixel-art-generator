@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import Board from '.';
 
@@ -12,9 +12,9 @@ describe('<Board />', () => {
       size: 15,
       color: 'red'
     };
-    const { getByText, container } = render(<Board {...defaultProps} {...overrideProps} />);
+    const { getByText, container, getByTestId } = render(<Board {...defaultProps} {...overrideProps} />);
 
-    return { getByText, container };
+    return { getByText, container, getByTestId };
   };
 
   it('renders the component', () => {
@@ -52,5 +52,16 @@ describe('<Board />', () => {
     const { container } = renderBoard(props);
 
     expect(container.querySelectorAll('li').length).toBe(amountOfItems);
+  });
+
+  it('calls onChange', () => {
+    const onChange = jest.fn();
+    const items = [['red']];
+
+    const { getByTestId } = renderBoard({ onChange, items });
+
+    fireEvent.click(getByTestId('board-item-0-red'));
+
+    expect(onChange).toHaveBeenCalled();
   });
 });

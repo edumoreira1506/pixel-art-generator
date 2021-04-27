@@ -61,6 +61,7 @@ export default function Board({ items, margin, onChange, size, color }: BoardPro
               color={item}
               key={`board-item-${itemIndex}-${item}`}
               size={size}
+              data-testid={`board-item-${itemIndex}-${item}`}
             />
           ))}
         </StyledBoardRow>
