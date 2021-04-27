@@ -39,10 +39,10 @@ export default function Folder({ name, children, onEdit, onDelete, id }: FolderP
       {children}
   
       <StyledActions>
-        <StyledAction onClick={handleEdit}>
+        <StyledAction data-testid="edit-folder" onClick={handleEdit}>
           <AiFillEdit />
         </StyledAction>
-        <StyledAction onClick={handleDelete}>
+        <StyledAction data-testid="delete-folder" onClick={handleDelete}>
           <AiFillDelete />
         </StyledAction>
       </StyledActions>
