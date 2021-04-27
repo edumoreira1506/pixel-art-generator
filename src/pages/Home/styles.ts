@@ -7,6 +7,7 @@ export const StyledContainer = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-top: 20px;
 `;
 
 export const StyledFolders = styled.ul`
@@ -14,7 +15,7 @@ export const StyledFolders = styled.ul`
   padding: 0;
   margin: 0;
   width: 90%;
-  min-height: 90%;
+  min-height: 80%;
 `;
 
 export const StyledFolder = styled.li`
@@ -48,13 +49,11 @@ export const StyledArts = styled.div`
 `;
 
 export const StyledNewFolderButton = styled.div`
-  height: 7%;
   margin-top: 2px;
   width: 90%;
 `;
 
 export const StyledNewArtButton = styled.div`
-  height: 7%;
   margin-top: 2px;
   width: 90%;
 `;

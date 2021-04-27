@@ -1,11 +1,24 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
+import { HiOutlineLogout } from 'react-icons/hi';
 
 import { APP_TITLE } from '../../config/constants';
+import useAuth from '../../hooks/useAuth';
+import StoreService from '../../services/StoreService';
 
-import { StyledHeader } from './styles';
+import { StyledHeader, StyledText } from './styles';
 
-const Header = (): ReactElement => (
-  <StyledHeader>{APP_TITLE}</StyledHeader>
-);
+export default function Header(): ReactElement {
+  const { setToken } = useAuth();
 
-export default Header;
+  const handleLogout = useCallback(() => {
+    setToken('');
+    StoreService.clear();
+  }, []);
+
+  return (
+    <StyledHeader>
+      <StyledText>{APP_TITLE}</StyledText>
+      <HiOutlineLogout onClick={handleLogout} />
+    </StyledHeader>
+  );
+}

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { colors } from '../../config/constants';
 
 export const StyledContainer = styled.div`
+  margin-top: 65px;
+
   .lds-roller {
     position: absolute;
     right: 50%;

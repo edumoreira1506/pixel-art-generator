@@ -5,6 +5,7 @@ export const StyledTitle = styled.p`
   font-size: 2em;
   max-width: 95%;
   text-align: center;
+  margin-top: 65px;
 `;
 
 export const StyledBoard = styled.div`

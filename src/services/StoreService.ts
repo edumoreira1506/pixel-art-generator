@@ -8,4 +8,8 @@ export default class StoreService {
   static setToken(token: string): void {
     window.localStorage.setItem(TOKEN_KEY, token);
   }
+
+  static clear(): void {
+    window.localStorage.clear();
+  }
 }
