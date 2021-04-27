@@ -63,7 +63,9 @@ export default function ArtPage(): ReactElement {
     updateArt();
   }, 5000, [items]);
 
-  const handleExportToImage = () => exportComponentAsPNG(pixelArtRef);
+  const handleExportToImage = () => exportComponentAsPNG(pixelArtRef, {
+    fileName: name
+  });
 
   return (
     <StyledContainer>
