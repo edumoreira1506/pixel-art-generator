@@ -13,7 +13,7 @@ import FolderService from '../../services/FolderService';
 import Button from '../../components/Button';
 import Slider from '../../components/Slider';
 
-import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButton, StyledSlider } from './styles';
+import { StyledContainer, StyledColorPicker, StyledName, StyledBoard, StyledButton, StyledSlider, StyledBoardContainer } from './styles';
 
 export default function ArtPage(): ReactElement {
   const { params: { folderId, artId } } = useRouter();
@@ -66,7 +66,14 @@ export default function ArtPage(): ReactElement {
   }, 5000, [items, marginBetween, itemWidth, name, folderId, artId, token]);
 
   const handleExportToImage = () => exportComponentAsPNG(pixelArtRef, {
-    fileName: name
+    fileName: name,
+    html2CanvasOptions: {
+      scrollX: -window.scrollX + 2,
+      scrollY: -window.scrollY + 2,
+      width: pixelArtRef.current.offsetWidth + 4,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight
+    }
   });
 
   const handleToggleConfig = () => setShowConfig(!showConfig);
@@ -85,15 +92,17 @@ export default function ArtPage(): ReactElement {
               onChange={({ hex }) => setColor(hex)}
             />
           </StyledColorPicker>
-          <StyledBoard ref={pixelArtRef}>
-            <Board
-              items={items}
-              onChange={setItems}
-              margin={marginBetween}
-              size={itemWidth}
-              color={color}
-            />
-          </StyledBoard>
+          <StyledBoardContainer>
+            <StyledBoard ref={pixelArtRef}>
+              <Board
+                items={items}
+                onChange={setItems}
+                margin={marginBetween}
+                size={itemWidth}
+                color={color}
+              />
+            </StyledBoard>
+          </StyledBoardContainer>
           <StyledButton>
             <Button onClick={handleExportToImage}>
               Export

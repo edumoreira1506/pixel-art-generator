@@ -27,10 +27,14 @@ export const StyledName = styled.p`
   border-bottom: solid 1px ${colors.BLACK};
 `;
 
-export const StyledBoard = styled.div`
+export const StyledBoardContainer = styled.div`
   display: flex;
-  width: auto;
-  height: auto;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledBoard = styled.div`
+  display: inline-flex;
 `;
 
 export const StyledButton = styled.div`

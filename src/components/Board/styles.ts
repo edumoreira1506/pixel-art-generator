@@ -4,7 +4,6 @@ export const StyledBoard = styled.ul`
   display: flex;
   padding: 0;
   list-style: none;
-  max-width: 95%;
   margin: 0 auto;
   flex-wrap: wrap;
   align-items: center;
@@ -29,6 +28,10 @@ export const StyledBoardItem = styled.li`
     width: ${size}px;
     height: ${size}px;
   `}
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 export const StyledBoardRow = styled.div`
