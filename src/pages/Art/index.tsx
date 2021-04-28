@@ -96,7 +96,7 @@ export default function ArtPage(): ReactElement {
           </StyledBoard>
           <StyledButton>
             <Button onClick={handleExportToImage}>
-              Exportar
+              Export
             </Button>
           </StyledButton>
           <StyledButton>
@@ -106,8 +106,8 @@ export default function ArtPage(): ReactElement {
           </StyledButton>
           {showConfig && (
             <StyledSlider>
-              <Slider label="Largura do 'pixel'" value={Number(itemWidth)} onChange={setItemWidth} />
-              <Slider label="Espaço entre os pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
+              <Slider label="Pixel size" value={Number(itemWidth)} onChange={setItemWidth} />
+              <Slider label="Space between the pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
             </StyledSlider>
           )}
         </>
