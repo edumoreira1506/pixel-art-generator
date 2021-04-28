@@ -35,7 +35,7 @@ export default function NewArtPage(): ReactElement {
   return (
     <ConfigProvider>
       <Box>
-        <StyledTitle>Configurações da nova arte</StyledTitle>
+        <StyledTitle>Art config</StyledTitle>
         <ConfigContainer isLoading={isLoading} onSave={handleCreateArt} />
         <StyledSubtitle>Preview:</StyledSubtitle>
         <StyledBoard>

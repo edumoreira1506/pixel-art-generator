@@ -3,7 +3,9 @@ import React, { ReactElement, useCallback, useState } from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Loading from '../../components/Loading';
+import { routes } from '../../config/constants';
 import useAuth from '../../hooks/useAuth';
+import useRouter from '../../hooks/useRouter';
 import AuthService from '../../services/AuthService';
 import StorageService from '../../services/StorageService';
 
@@ -14,6 +16,7 @@ export default function LoginPage(): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setToken } = useAuth();
+  const { setRoute } = useRouter();
 
   const handleLogin = useCallback((e) => {
     e.preventDefault();
@@ -33,6 +36,8 @@ export default function LoginPage(): ReactElement {
     });
   }, [username, password, AuthService.login]);
 
+  const handleRegister = useCallback(() => setRoute(routes.NEW_USER), [setRoute]);
+
   return (
     <StyledContainer>
       <StyledWrapper>
@@ -46,6 +51,11 @@ export default function LoginPage(): ReactElement {
           <StyledField>
             <Button onClick={handleLogin}>
               {isLoading ? <Loading /> : 'Login'}
+            </Button>
+          </StyledField>
+          <StyledField>
+            <Button onClick={handleRegister}>
+              Register
             </Button>
           </StyledField>
         </StyledForm>

@@ -77,7 +77,7 @@ export default function HomePage(): ReactElement {
   }, [folders, arts, token]);
 
   const handleAddNewFolder = useCallback(() => {
-    const newFolderName = window.prompt('Qual o nome da nova pasta?');
+    const newFolderName = window.prompt('What is the name of the new folder?');
 
     FolderService.store(String(token), String(newFolderName), {
       onSuccess: handleFetchFolders,
@@ -129,12 +129,12 @@ export default function HomePage(): ReactElement {
           </StyledFolders>
           <StyledNewFolderButton>
             <Button onClick={handleAddNewFolder}>
-              Nova pasta
+              New folder
             </Button>
           </StyledNewFolderButton>
           <StyledNewArtButton>
             <Button onClick={handleAddNewArt}>
-              Nova arte
+              New art
             </Button>
           </StyledNewArtButton>
         </>

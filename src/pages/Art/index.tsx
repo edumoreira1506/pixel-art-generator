@@ -58,7 +58,7 @@ export default function ArtPage(): ReactElement {
         name,
       }, {
         onError: console.log,
-        onSuccess: () => toast('Progresso salvo!'),
+        onSuccess: () => toast('Saved!'),
       });
     };
 
@@ -101,7 +101,7 @@ export default function ArtPage(): ReactElement {
           </StyledButton>
           <StyledButton>
             <Button onClick={handleToggleConfig}>
-              {showConfig ? 'Salvar' : 'Editar'} configurações
+              {showConfig ? 'Save' : 'Edit'} config
             </Button>
           </StyledButton>
           {showConfig && (
