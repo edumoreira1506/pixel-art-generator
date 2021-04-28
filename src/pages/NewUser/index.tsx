@@ -4,44 +4,40 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Loading from '../../components/Loading';
 import { routes } from '../../config/constants';
-import useAuth from '../../hooks/useAuth';
 import useRouter from '../../hooks/useRouter';
 import AuthService from '../../services/AuthService';
-import StorageService from '../../services/StorageService';
+import UserService from '../../services/UserService';
 
 import { StyledContainer, StyledField, StyledForm, StyledWrapper } from './styles';
 
-export default function LoginPage(): ReactElement {
+export default function NewUserPage(): ReactElement {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { setToken } = useAuth();
   const { setRoute } = useRouter();
 
-  const handleLogin = useCallback((e) => {
+  const handleSaveUser = useCallback((e) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    AuthService.login(username, password, {
+    UserService.store(username, password, confirmPassword, {
       onError: message => {
         setIsLoading(false);
         window.alert(message);
       },
-      onSuccess: ({ token }) => {
-        StorageService.setToken(token);
-        setIsLoading(true);
-        setToken(token);
+      onSuccess: () => {
+        window.alert('Registered! You need to just login to enjoy :D');
+        setRoute(routes.LOGIN);
       }
     });
-  }, [username, password, AuthService.login]);
-
-  const handleRegister = useCallback(() => setRoute(routes.NEW_USER), [setRoute]);
+  }, [username, password, confirmPassword, AuthService.login]);
 
   return (
     <StyledContainer>
       <StyledWrapper>
-        <StyledForm onSubmit={handleLogin}>
+        <StyledForm onSubmit={handleSaveUser}>
           <StyledField>
             <Input value={username} onChange={setUsername} placeholder="Username" type="text" required />
           </StyledField>
@@ -49,13 +45,11 @@ export default function LoginPage(): ReactElement {
             <Input value={password} onChange={setPassword} placeholder="Password" type="password" required />
           </StyledField>
           <StyledField>
-            <Button onClick={handleLogin}>
-              {isLoading ? <Loading /> : 'Login'}
-            </Button>
+            <Input value={confirmPassword} onChange={setConfirmPassword} placeholder="Confirm password" type="password" required />
           </StyledField>
           <StyledField>
-            <Button onClick={handleRegister}>
-              Register
+            <Button onClick={handleSaveUser}>
+              {isLoading ? <Loading /> : 'Save'}
             </Button>
           </StyledField>
         </StyledForm>

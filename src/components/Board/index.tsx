@@ -37,9 +37,8 @@ export default function Board({ items, margin, onChange, size, color }: BoardPro
 
     if (isOutOfBoard) return;
 
-    const marginSize = items.length * margin;
-    const row = Math.round(Number(clientY - top + marginSize) / size) - 1;
-    const column = Math.round(Number(clientX - left + marginSize) / size) - 1;
+    const row = Math.round(Number(clientY - top) / size) - 1;
+    const column = Math.round(Number(clientX - left) / size) - 1;
 
     handleChangeItemColor(row, column);
   };
@@ -61,6 +60,7 @@ export default function Board({ items, margin, onChange, size, color }: BoardPro
               color={item}
               key={`board-item-${itemIndex}-${item}`}
               size={size}
+              data-testid={`board-item-${itemIndex}-${item}`}
             />
           ))}
         </StyledBoardRow>

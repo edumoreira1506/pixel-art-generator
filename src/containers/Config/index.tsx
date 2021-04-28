@@ -49,7 +49,7 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
   })), [folders]);
 
   const handleSaveConfig = useCallback(() => {
-    if (!folder) window.alert('Pasta é obrigatório');
+    if (!folder) window.alert('Folder is required');
 
     onSave({
       name,
@@ -61,19 +61,19 @@ const ConfigContainer = ({ isLoading, onSave }: ConfigContainerPropsType): React
 
   return (
     <StyledSlider>
-      <Slider label="Largura do 'pixel'" value={Number(itemWidth)} onChange={setItemWidth} />
-      <Slider label="Espaço entre os pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
-      <Slider label="Colunas" value={Number(columns)} onChange={setColumns} />
-      <Slider label="Linhas" value={Number(rows)} onChange={setRows} />
+      <Slider label="Pixel size" value={Number(itemWidth)} onChange={setItemWidth} />
+      <Slider label="Space between the pixels" value={Number(marginBetween)} onChange={setMarginBetween} />
+      <Slider label="Columns" value={Number(columns)} onChange={setColumns} />
+      <Slider label="Rows" value={Number(rows)} onChange={setRows} />
       <StyledField>
-        <Input placeholder="Nome da arte" type="text" required value={name} onChange={setName} />
+        <Input placeholder="Art name" type="text" required value={name} onChange={setName} />
       </StyledField>
       <StyledField>
-        <Select placeholder="Pasta da arte" onChange={setFolder} options={foldersOptions} value={folder} />
+        <Select placeholder="Art folder" onChange={setFolder} options={foldersOptions} value={folder} />
       </StyledField>
       <StyledField>
         <Button onClick={handleSaveConfig}>
-          {isLoading ? <Loading /> : 'Salvar'}
+          {isLoading ? <Loading /> : 'Save'}
         </Button>
       </StyledField>
     </StyledSlider>

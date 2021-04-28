@@ -34,7 +34,7 @@ export default function HomePage(): ReactElement {
         setIsLoading(false);
       }
     });
-  }, [FolderService]);
+  }, [FolderService, token]);
 
   useEffect(() => {
     handleFetchFolders();
@@ -60,7 +60,7 @@ export default function HomePage(): ReactElement {
       }));
       
       FolderService.getFolderArts(String(token), folderId, {
-        onError: window.alert,
+        onError: (error) => window.alert(error),
         onSuccess: (data) => setArts((prevArts: any) => ({
           current: {
             folderId,
@@ -74,16 +74,16 @@ export default function HomePage(): ReactElement {
         }))
       });
     }
-  }, [folders, arts]);
+  }, [folders, arts, token]);
 
   const handleAddNewFolder = useCallback(() => {
-    const newFolderName = window.prompt('Qual o nome da nova pasta?');
+    const newFolderName = window.prompt('What is the name of the new folder?');
 
     FolderService.store(String(token), String(newFolderName), {
       onSuccess: handleFetchFolders,
       onError: error => window.alert(error)
     });
-  }, [FolderService]);
+  }, [FolderService, token, handleFetchFolders]);
 
   const handleAddNewArt = useCallback(() => setRoute(routes.NEW_ART), [setRoute]);
 
@@ -92,14 +92,14 @@ export default function HomePage(): ReactElement {
       onSuccess: handleFetchFolders,
       onError: error => window.alert(error)
     });
-  }, [FolderService]);
+  }, [FolderService, token, handleFetchFolders]);
 
   const handleRemoveFolder = useCallback((folderId: string) => {
     FolderService.remove(String(token), folderId, {
       onSuccess: handleFetchFolders,
       onError: error => window.alert(error)
     });
-  }, [FolderService]);
+  }, [FolderService, token, handleFetchFolders]);
 
   return (
     <StyledContainer>
@@ -129,12 +129,12 @@ export default function HomePage(): ReactElement {
           </StyledFolders>
           <StyledNewFolderButton>
             <Button onClick={handleAddNewFolder}>
-              Nova pasta
+              New folder
             </Button>
           </StyledNewFolderButton>
           <StyledNewArtButton>
             <Button onClick={handleAddNewArt}>
-              Nova arte
+              New art
             </Button>
           </StyledNewArtButton>
         </>
