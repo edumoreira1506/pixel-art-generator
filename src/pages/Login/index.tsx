@@ -43,10 +43,10 @@ export default function LoginPage(): ReactElement {
       <StyledWrapper>
         <StyledForm onSubmit={handleLogin}>
           <StyledField>
-            <Input value={username} onChange={setUsername} placeholder="Username" type="text" required />
+            <Input dataInput="username" value={username} onChange={setUsername} placeholder="Username" type="text" required />
           </StyledField>
           <StyledField>
-            <Input value={password} onChange={setPassword} placeholder="Password" type="password" required />
+            <Input dataInput="password" value={password} onChange={setPassword} placeholder="Password" type="password" required />
           </StyledField>
           <StyledField>
             <Button onClick={handleLogin}>

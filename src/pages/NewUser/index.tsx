@@ -39,13 +39,13 @@ export default function NewUserPage(): ReactElement {
       <StyledWrapper>
         <StyledForm onSubmit={handleSaveUser}>
           <StyledField>
-            <Input value={username} onChange={setUsername} placeholder="Username" type="text" required />
+            <Input dataInput="username" value={username} onChange={setUsername} placeholder="Username" type="text" required />
           </StyledField>
           <StyledField>
-            <Input value={password} onChange={setPassword} placeholder="Password" type="password" required />
+            <Input dataInput="password" value={password} onChange={setPassword} placeholder="Password" type="password" required />
           </StyledField>
           <StyledField>
-            <Input value={confirmPassword} onChange={setConfirmPassword} placeholder="Confirm password" type="password" required />
+            <Input dataInput="confirmPassword" value={confirmPassword} onChange={setConfirmPassword} placeholder="Confirm password" type="password" required />
           </StyledField>
           <StyledField>
             <Button onClick={handleSaveUser}>
