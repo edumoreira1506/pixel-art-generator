@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Art from '../pages/Art';
 import NewArt from '../pages/NewArt';
+import NewUser from '../pages/NewUser';
 
 import { routes } from '../config/constants';
 
@@ -15,6 +16,8 @@ const Routes = (): ReactElement => (
   <BrowserRouter>
     <Switch>
       <PublicRoute exact path={routes.LOGIN} component={Login} />
+
+      <PublicRoute exact path={routes.NEW_USER} component={NewUser} />
 
       <PrivateRoute exact path={routes.HOME} component={Home} />
 

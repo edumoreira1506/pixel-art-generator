@@ -15,6 +15,7 @@ export const routes = {
   LOGIN: '/login',
   ART: (folderId: string, artId: string): string => `/folder/${folderId}/art/${artId}`,
   NEW_ART: '/art/new',
+  NEW_USER: '/register'
 };
 
 export const colors = {
