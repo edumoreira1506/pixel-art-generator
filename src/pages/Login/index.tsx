@@ -22,7 +22,7 @@ export default function LoginPage(): ReactElement {
 
     AuthService.login(username, password, {
       onError: message => {
-        setIsLoading(false);Loading;
+        setIsLoading(false);
         window.alert(message);
       },
       onSuccess: ({ token }) => {
